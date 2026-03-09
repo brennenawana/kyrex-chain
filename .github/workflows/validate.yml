@@ -1,0 +1,61 @@
+name: Kyrex Block Validation
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Validate block structure
+        run: |
+          # Check that only allowed files were modified
+          CHANGED=$(git diff --name-only HEAD~1 HEAD)
+          for file in $CHANGED; do
+            case "$file" in
+              train.py|kyrex.json|history/blocks.jsonl) ;;
+              *) echo "❌ INVALID: Modified forbidden file: $file"; exit 1 ;;
+            esac
+          done
+
+          # Validate kyrex.json schema
+          python -c "
+          import json, sys
+          state = json.load(open('kyrex.json'))
+          assert 'chain' in state, 'Missing chain'
+          assert 'last_block' in state, 'Missing last_block'
+          assert 'ledger' in state, 'Missing ledger'
+          assert state['last_block']['improvement'] >= 0, 'Negative improvement'
+          print('✓ Block structure valid')
+          "
+
+          # Verify height is sequential
+          python -c "
+          import json
+          state = json.load(open('kyrex.json'))
+          height = state['chain']['height']
+          last = state['last_block']['height']
+          assert height == last, f'Height mismatch: chain={height}, block={last}'
+          print(f'✓ Block #{height} sequential')
+          "
+
+      - name: Validate commit message format
+        run: |
+          MSG=$(git log -1 --pretty=%s)
+          echo "Commit: $MSG"
+          # Genesis commit is exempt from format check
+          if echo "$MSG" | grep -q "Genesis"; then
+            echo "✓ Genesis commit"
+            exit 0
+          fi
+          # Should match: "Block #N: val_bpb X.XXXX → Y.YYYY (Δ=±Z.ZZZZ) by miner_id"
+          echo "$MSG" | grep -qE "^Block #[0-9]+" || {
+            echo "❌ INVALID: Commit message doesn't match block format"
+            exit 1
+          }
+          echo "✓ Commit message valid"

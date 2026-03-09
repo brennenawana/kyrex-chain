@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+run.log
+results.tsv
+*.pt
+*.pkl
+.uv/
+uv.lock

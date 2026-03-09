@@ -1,0 +1,45 @@
+{
+  "protocol_version": "0.2.0",
+  "chain": {
+    "height": 0,
+    "genesis_hash": "91f58d3e78350290c6d2381823c79912e6ff5c14",
+    "tip_hash": "91f58d3e78350290c6d2381823c79912e6ff5c14",
+    "initial_val_bpb": 0.9979,
+    "current_val_bpb": 0.9979,
+    "total_improvement_pct": 0.0,
+    "created_at": "2026-03-09T23:00:00Z"
+  },
+  "last_block": {
+    "height": 0,
+    "commit_hash": "91f58d3e78350290c6d2381823c79912e6ff5c14",
+    "parent_hash": "0000000000000000000000000000000000000000",
+    "miner_id": "genesis",
+    "val_bpb_before": 0.9979,
+    "val_bpb_after": 0.9979,
+    "improvement": 0.0,
+    "improvement_pct": 0.0,
+    "experiment_description": "Genesis — baseline autoresearch nanochat",
+    "gpu_type": "none",
+    "agent_model": "none",
+    "training_duration_sec": 0,
+    "peak_vram_mb": 0,
+    "timestamp": "2026-03-09T23:00:00Z"
+  },
+  "token": {
+    "name": "Kyrex",
+    "symbol": "KRX",
+    "total_supply": 21000000,
+    "total_emitted": 0.0,
+    "current_block_reward": 50.0,
+    "halving_interval": 210000,
+    "next_halving_block": 210000
+  },
+  "ledger": {},
+  "config": {
+    "time_budget_sec": 300,
+    "min_improvement": 0.0001,
+    "allowed_modified_files": ["train.py"],
+    "verification": "optimistic",
+    "challenge_window_blocks": 5
+  }
+}
