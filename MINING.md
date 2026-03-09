@@ -30,7 +30,7 @@ improvements faster:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # 2. Clone the chain
-git clone https://github.com/xargzx/kyrex-chain.git
+git clone https://github.com/brennenawana/kyrex-chain.git
 cd kyrex-chain
 
 # 3. Install dependencies

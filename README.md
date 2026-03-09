@@ -27,7 +27,7 @@ you discard and start fresh from the new chain tip.
 ### 1. Clone the chain
 
 ```bash
-git clone https://github.com/xargzx/kyrex-chain.git
+git clone https://github.com/brennenawana/kyrex-chain.git
 cd kyrex-chain
 ```
 
@@ -101,4 +101,4 @@ See [MINING.md](MINING.md) for the full mining guide.
 ## Credits
 
 Training code based on [karpathy/autoresearch](https://github.com/karpathy/autoresearch).
-Protocol design: [Kyrex Whitepaper](https://github.com/xargzx/kyrex/blob/main/kyrex-whitepaper.md).
+Protocol design: [Kyrex Whitepaper](https://github.com/brennenawana/kyrex/blob/main/kyrex-whitepaper.md).
